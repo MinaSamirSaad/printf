@@ -54,7 +54,8 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					st = va_arg(args, char *);
-					res += write(1, st, lenstr(st)) - 1;
+					if (st)
+						res += write(1, st, lenstr(st)) - 1;
 					break;
 				case '%':
 					write(1, format, 1);
