@@ -28,8 +28,8 @@ int lenstr(char *s)
 }
 /**
  * nullCheck - compute length of s
- * @s: string
- * Return: length of s
+ * @args: list that contains the format inserted
+ * Return: res
 */
 int nullCheck(va_list args)
 {
