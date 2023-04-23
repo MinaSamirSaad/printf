@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	if (!format)
-		return (res);
+		return (-1);
 	va_start(args, format);
 	while (*format)
 	{
