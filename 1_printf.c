@@ -4,7 +4,7 @@
  * @s: string
  * Return: length of spaces
 */
-int cntspaces(char *s)
+int cntspaces(const char *s)
 {
 	int space = 0;
 
@@ -62,11 +62,10 @@ int _printf(const char *format, ...)
 				case '%':
 					write(1, format, 1);
 					break;
-				case ' ':
-					/* count multi spaces after current space*/
-					skipspaces = cntspaces(format + 1);
 				default:
 					write(1, format - 1, 2);
+					/* count multi spaces after current space*/
+					skipspaces = cntspaces(format + 1);
 					/* skip multi spaces after % */
 					/* and stop at last one */
 					format += skipspaces, res++, skipspaces = 0;
