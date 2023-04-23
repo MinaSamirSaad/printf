@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int printed;
+	int printed = 0;
 	va_list args;
 
 	if (format == NULL)
@@ -18,5 +18,5 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 
-	return (printed);
+	return (printed > 0 ? printed : -1);
 }
