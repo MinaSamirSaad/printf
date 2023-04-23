@@ -48,7 +48,7 @@ int _printf(const char *format, ...)
 					res--;
 					res += printstr(st);
 					break;
-				default:
+				case '%:
 					write(1, format, 1);
 			}
 		}
