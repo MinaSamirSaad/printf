@@ -22,6 +22,10 @@ int formatCases(const char *format, va_list args)
 		case '%':
 			write(1, format, 1);
 			break;
+		case 'd':
+		case 'i':
+			res += print_integer(args), res--;
+			break;
 		default:
 			write(1, format - 1, 2);
 			format = skp_space_percent(format), res++;

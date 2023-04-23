@@ -8,5 +8,6 @@ int _printf(const char *format, ...);
 int handle_format(va_list args, const char *format);
 const char *skp_space_percent(const char *s);
 int print_str(va_list args);
+int print_integer(va_list args);
 
 #endif
