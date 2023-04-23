@@ -61,8 +61,7 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					write(1, format - 1, 2);
-					format = skp_space_percent(format);
-					res++;
+					format = skp_space_percent(format), res++;
 			}
 		}
 		else
