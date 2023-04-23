@@ -33,7 +33,7 @@ int lenstr(char *s)
 */
 int _printf(const char *format, ...)
 {
-	int res = 0, skipspaces = 0;
+	int res = 0;
 	char let, *st;
 	va_list args;
 
