@@ -31,10 +31,12 @@ int lenstr(char *s)
  * @s: string
  * Return: length of s
 */
-int nullCheck(char *st)
+int nullCheck(va_list args)
 {
+	char *st;
 	int res;
 
+	st = va_arg(args, char *);
 	if (st == NULL)
 	{
 		st = "(null)";
@@ -74,8 +76,7 @@ int _printf(const char *format, ...)
 					write(1, &let, 1);
 					break;
 				case 's':
-					st = va_arg(args, char *);
-					res += nullCheck(st);
+					res += nullCheck(args);
 					break;
 				case '%':
 					write(1, format, 1);
