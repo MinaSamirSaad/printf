@@ -2,7 +2,8 @@
 /**
  * cntspaces - compute length of spaces in s
  * @s: string
- * Return: length of spaces
+ * Return: length of spaces excluding the last one or zero if no space
+ * at first
 */
 int cntspaces(const char *s)
 {
@@ -13,7 +14,7 @@ int cntspaces(const char *s)
 		++s;
 		++space;
 	}
-	return (space);
+	return (space > 0 ? space - 1 : space);
 }
 /**
  * lenstr - compute length of s
@@ -65,7 +66,8 @@ int _printf(const char *format, ...)
 				default:
 					write(1, format - 1, 2);
 					/* count multi spaces after current space*/
-					skipspaces = cntspaces(format + 1);
+					/* in case of we *format is already space */
+					skipspaces = cntspaces(format);
 					/* skip multi spaces after % */
 					/* and stop at last one */
 					format += skipspaces, res++, skipspaces = 0;
