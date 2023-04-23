@@ -50,6 +50,9 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					write(1, format, 1);
+				default:
+					write(1, forma - 1, 2);
+					res++;
 			}
 		}
 		else
