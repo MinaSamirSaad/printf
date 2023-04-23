@@ -51,7 +51,7 @@ int _printf(const char *format, ...)
 				case '%':
 					write(1, format, 1);
 				default:
-					write(1, forma - 1, 2);
+					write(1, format - 1, 2);
 					res++;
 			}
 		}
