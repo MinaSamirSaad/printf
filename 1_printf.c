@@ -27,6 +27,27 @@ int lenstr(char *s)
 	return (len);
 }
 /**
+ * nullCheck - compute length of s
+ * @st: string
+ * Return: length of s
+*/
+int nullCheck(char *st)
+{
+	int res = 0;
+
+	if (st == NULL)
+	{
+		st = "(null)";
+		res += write(1, st, lenstr(st)) - 1;
+	}
+	else
+	{
+	res += write(1, st, lenstr(st)) - 1;
+	}
+	return (res);
+
+}
+/**
  * _printf - printf mimic
  * @format: string
  * Return: number of printed
@@ -54,8 +75,7 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					st = va_arg(args, char *);
-					if (st)
-						res += write(1, st, lenstr(st)) - 1;
+					res += nullCheck(st);
 					break;
 				case '%':
 					write(1, format, 1);
@@ -70,5 +90,5 @@ int _printf(const char *format, ...)
 		++format, ++res;
 	}
 	va_end(args);
-	return (res);
+	return (res > 0 ? res : -1);
 }
