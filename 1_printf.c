@@ -28,6 +28,7 @@ int lenstr(char *s)
 }
 /**
  * nullCheck - compute length of s
+<<<<<<< HEAD
  * @st: string
  * Return: length of s
 */
@@ -35,6 +36,17 @@ int nullCheck(char *st)
 {
 	int res = 0;
 
+=======
+ * @args: list that contains the format inserted
+ * Return: res
+*/
+int nullCheck(va_list args)
+{
+	char *st;
+	int res;
+
+	st = va_arg(args, char *);
+>>>>>>> 9df2f4346365441512c343d4706f63943b2ff2cf
 	if (st == NULL)
 	{
 		st = "(null)";
@@ -74,11 +86,18 @@ int _printf(const char *format, ...)
 					write(1, &let, 1);
 					break;
 				case 's':
+<<<<<<< HEAD
 					st = va_arg(args, char *);
 					res += nullCheck(st);
+=======
+					res += nullCheck(args);
+>>>>>>> 9df2f4346365441512c343d4706f63943b2ff2cf
 					break;
 				case '%':
 					write(1, format, 1);
+					break;
+				case '\0':
+					res -= 2;
 					break;
 				default:
 					write(1, format - 1, 2);
