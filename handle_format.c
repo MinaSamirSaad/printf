@@ -17,7 +17,7 @@ int formatCases(const char *format, va_list args)
 			write(1, &let, 1);
 			break;
 		case 's':
-			res += print_str(args);
+			res += print_str(args) - 1;
 			break;
 		case '%':
 			write(1, format, 1);
