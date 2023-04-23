@@ -1,20 +1,14 @@
 #include "main.h"
 /**
- * cntspaces - compute length of spaces in s
+ * skp_space_percent - goto last space after percent
  * @s: string
- * Return: length of spaces excluding the last one or zero if no space
- * at first
+ * Return: last space in string pointer if existed
 */
-int cntspaces(const char *s)
+const char *skp_space_percent(const char *s)
 {
-	int space = 0;
-
-	while (s && *s == ' ')
-	{
+	while (s && *s == ' ' && *(s + 1) == ' ')
 		++s;
-		++space;
-	}
-	return (space > 0 ? space - 1 : space);
+	return (s);
 }
 /**
  * lenstr - compute length of s
@@ -67,8 +61,8 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					write(1, format - 1, 2);
-					skipspaces = cntspaces(format);
-					format += skipspaces, res++, skipspaces = 0;
+					format = skp_space_percent(format);
+					res++;
 			}
 		}
 		else
