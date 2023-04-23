@@ -48,8 +48,10 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%' && (++format))
+		if (*format == '%')
 		{
+			if (*(++format) == NULL)
+				break;
 			switch (*format)
 			{
 				case 'c':
@@ -65,11 +67,7 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					write(1, format - 1, 2);
-					/* count multi spaces after current space*/
-					/* in case of we *format is already space */
 					skipspaces = cntspaces(format);
-					/* skip multi spaces after % */
-					/* and stop at last one */
 					format += skipspaces, res++, skipspaces = 0;
 			}
 		}
