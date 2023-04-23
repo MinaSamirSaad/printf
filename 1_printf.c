@@ -1,20 +1,35 @@
 #include "main.h"
 /**
- * printstr - print string
+ * cntspaces - compute length of spaces in s
  * @s: string
- * Return: number of printed
+ * Return: length of spaces
 */
-int printstr(char *s)
+int cntspaces(char *s)
 {
-	int printed = 0;
+	int space = 0;
+
+	while (s && *s == ' ')
+	{
+		++s;
+		++space;
+	}
+	return (space);
+}
+/**
+ * lenstr - compute length of s
+ * @s: string
+ * Return: length of s
+*/
+int lenstr(char *s)
+{
+	int len = 0;
 
 	while (s && *s)
 	{
-		write(1, s, 1);
 		++s;
-		++printed;
+		++len;
 	}
-	return (printed);
+	return (len);
 }
 /**
  * _printf - printf mimic
@@ -23,7 +38,7 @@ int printstr(char *s)
 */
 int _printf(const char *format, ...)
 {
-	int res = 0;
+	int res = 0, skipspaces = 0;
 	char let, *st;
 	va_list args;
 
@@ -32,11 +47,8 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && (++format))
 		{
-			++format;
-			if (!format)
-				break;
 			switch (*format)
 			{
 				case 'c':
@@ -45,21 +57,24 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					st = va_arg(args, char *);
-					res--;
-					res += printstr(st);
+					res += write(1, st, lenstr(st)) - 1;
 					break;
 				case '%':
 					write(1, format, 1);
 					break;
+				case ' ':
+					/* count multi spaces after current space*/
+					skipspaces = cntspaces(format + 1);
 				default:
 					write(1, format - 1, 2);
-					res++;
+					/* skip multi spaces after % */
+					/* and stop at last one */
+					format += skipspaces, res++, skipspaces = 0;
 			}
 		}
 		else
 			write(1, format, 1);
-		++format;
-		++res;
+		++format, ++res;
 	}
 	va_end(args);
 	return (res);
