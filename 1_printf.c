@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			if (*(++format) == NULL)
+			if (!*(++format))
 				break;
 			switch (*format)
 			{
