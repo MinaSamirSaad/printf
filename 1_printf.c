@@ -54,11 +54,20 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					st = va_arg(args, char *);
-					if (st)
+					if (st!= NULL)
 						res += write(1, st, lenstr(st)) - 1;
+					else
+					{
+						st="(null)";
+						res += write(1, st, lenstr(st)) - 1;
+						
+					}
 					break;
 				case '%':
 					write(1, format, 1);
+					break;
+				case '\0':
+					res -= 2;
 					break;
 				default:
 					write(1, format - 1, 2);
