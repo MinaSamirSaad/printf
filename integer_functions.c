@@ -53,7 +53,7 @@ char negative = '-';
 int print_unsigned_integer(va_list args, char tag)
 {
 	int count = 0, i = 0, rem;
-	char ar[15] = "0";
+	char ar[32] = "0";
 	unsigned int uNumber = va_arg(args, unsigned int);
 
 	if (tag == 'u')
