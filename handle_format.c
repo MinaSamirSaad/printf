@@ -29,6 +29,7 @@ int formatCases(const char *format, va_list args)
 		case 'b':
 			res += print_binary(args), res--;
 			break;
+		case 'u':
 		case 'o':
 		case 'x':
 		case 'X':
