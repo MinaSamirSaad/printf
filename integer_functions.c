@@ -81,7 +81,7 @@ int print_unsigned_integer(va_list args, char tag)
 				uNumber /= 16, i++;
 			}
 		}
-		count = i;
+		count = i > 0 ? i : 1;
 		i = i > 0 ? i - 1 : 0;
 		for (; i >= 0; i--)
 			write(1, &ar[i], 1);
