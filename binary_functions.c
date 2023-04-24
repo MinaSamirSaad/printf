@@ -6,7 +6,8 @@
 */
 int print_binary(va_list args)
 {
-int a[10], number, i, j, binary, res = 0;
+int a[33], i, j, res = 0;
+unsigned int  number, binary;
 number = va_arg(args, int);
 for (i = 0; number > 0; i++)
 {
