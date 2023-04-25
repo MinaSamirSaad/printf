@@ -68,9 +68,9 @@ else
 {
 res += write(1, str, 1);
 }
-str++;
 if (*str == '\0')
 break;
+str++;
 }
 }
 return (res);
