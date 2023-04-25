@@ -1,10 +1,10 @@
 #include "main.h"
 /**
-* print_num - recursive function to print a number
-*@n: number to print
-*@c: length of the number
-*Return: counter
-*/
+ * print_num - recursive function to print a number
+ *@n: number to print
+ *@c: length of the number
+ *Return: counter
+ */
 int print_num(unsigned int n, int c)
 {
 	char num;
@@ -19,13 +19,15 @@ int print_num(unsigned int n, int c)
 }
 
 /**
-* print_integer - function that print an integer
-*@args: list that contains the format inserted
-*Return: counter of the integers printed
-*/
-int print_integer(va_list args)
+ * print_integer - function that print an integer
+ *@args: list that contains the format inserted
+ *Return: counter of the integers printed
+ */
+int print_integer(va_list args, char flag)
 {
-char negative = '-';
+	char negative = '-';
+	char positive = '+';
+	char space = ' ';
 	int number, count = 0;
 	unsigned int unSignNumber;
 
@@ -39,17 +41,21 @@ char negative = '-';
 	}
 	else
 	{
+		if (flag == '+')
+			count += write(1, &positive, 1);
+		if (flag == ' ')
+			count += write(1, &space, 1);
 		unSignNumber = number;
 		count = print_num(unSignNumber, count);
 	}
 	return (count);
 }
 /**
-* print_unsigned_integer - function that print unsigned integer
-*@args: list that contains the format inserted
-* @tag: u=unsigned o=ocatal x,X=hexadecimal
-*Return: bytes of unsigned int printed
-*/
+ * print_unsigned_integer - function that print unsigned integer
+ *@args: list that contains the format inserted
+ * @tag: u=unsigned o=ocatal x,X=hexadecimal
+ *Return: bytes of unsigned int printed
+ */
 int print_unsigned_integer(va_list args, char tag)
 {
 	int count = 0, i = 0, rem;
@@ -76,7 +82,7 @@ int print_unsigned_integer(va_list args, char tag)
 				if (rem < 10)
 					ar[i] = rem + '0';
 				else
-					ar[i] =  (rem > 10 && tag == 'x') ? rem + 'W' : rem + '7';
+					ar[i] = (rem > 10 && tag == 'x') ? rem + 'W' : rem + '7';
 
 				uNumber /= 16, i++;
 			}
@@ -87,4 +93,21 @@ int print_unsigned_integer(va_list args, char tag)
 			write(1, &ar[i], 1);
 	}
 	return (count);
+}
+
+int handle_unsigned_integer(va_list args, char tag)
+{
+	int res = 0;
+
+	if (tag == 'o')
+	{
+		res += write(1, "0", 1);
+		res += print_unsigned_integer(args, tag);
+	}
+	else if (tag == 'x' || 'X')
+	{
+		res += write(1, "0x", 2);
+		res += print_unsigned_integer(args, tag);
+	}
+	return (res);
 }
