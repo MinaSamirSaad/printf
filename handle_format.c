@@ -54,6 +54,7 @@ int formatCases(const char *format, va_list args)
 		break;
 	case 's':
 	case 'r':
+	case 'R':
 		res += print_str(args, *format) - 1;
 		break;
 	case '%':
