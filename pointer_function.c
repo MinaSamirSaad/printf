@@ -13,7 +13,7 @@ int print_address(va_list args)
 	char ar[32] = "(nil)";
 	void *ptr = va_arg(args, void *);
 
-	if (ptr == NULL)
+	if (!ptr)
 		printed = write(1, ar, 5);
 	else
 	{
