@@ -60,17 +60,21 @@ int handle_format(va_list args, const char *format)
 			if (!*(++format))
 				break;
 			else if (*format == '+' || *format == ' ')
+			{
 				if (*(format + 1) == 'd' || *(format + 1) == 'i')
 				{
 				res += print_integer(args, *format) - 1;
 				format += 1;
 				}
+			}
 			else if (*format == '#')
+			{
 				if (*(format + 1) == 'o' || *(format + 1) == 'x' || *(format + 1) == 'X')
 				{
 				res += handle_unsigned_integer(args, *(format + 1)) - 1;
 				format += 1;
 				}
+			}
 			else
 			res += formatCases(format, args);
 		}
