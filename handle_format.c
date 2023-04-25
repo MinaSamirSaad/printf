@@ -16,25 +16,19 @@ int formatCases(const char *format, va_list args)
 			let = va_arg(args, int);
 			write(1, &let, 1);
 			break;
-		case 's':
-		case 'r':
-		case 'R':
+		case 's': case 'r': case 'R':
 			res += print_str(args, *format) - 1;
 			break;
 		case '%':
 			write(1, format, 1);
 			break;
-		case 'd':
-		case 'i':
+		case 'd': case 'i':
 			res += print_integer(args) - 1;
 			break;
 		case 'b':
 			res += print_binary(args) - 1;
 			break;
-		case 'u':
-		case 'o':
-		case 'x':
-		case 'X':
+		case 'u': case 'o': case 'x': case 'X':
 			res += print_unsigned_integer(args, *format) - 1;
 			break;
 		case 'p':
