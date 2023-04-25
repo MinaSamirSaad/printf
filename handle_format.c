@@ -88,7 +88,7 @@ int handle_format(va_list args, const char *format)
 		{
 			if (!*(++format))
 				break;
-			res += formatCases(format, args);
+			res += formatCases(format, args)-1;
 			res += continue_formatCases(format, args);
 			if ((*format == '+' || ' ') && (*(format + 1) == 'd' || 'i'))
 				format += 1;
