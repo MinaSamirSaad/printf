@@ -50,6 +50,8 @@ int print_custom_str(va_list args)
 char *str;
 int res = 0;
 str = va_arg(args, char *);
+	if (str == NULL)
+		str = "(null)";
 while (*str != '\0')
 {
 if (*str < ' ' || *str >= 127)
