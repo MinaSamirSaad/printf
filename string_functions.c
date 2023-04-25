@@ -81,7 +81,7 @@ int print_custom_str(va_list args)
 			{
 				res += write(1, str, 1);
 			}
-			str++;
+			++str;
 		}
 	}
 	return (res);
