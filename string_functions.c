@@ -56,7 +56,7 @@ if (str == NULL)
 res += write(1, st, 6);
 else
 {
-while (str)
+while (*str!='\0')
 {
 if (*str < ' ' || *str >= 127)
 {
@@ -68,9 +68,7 @@ else
 {
 res += write(1, str, 1);
 }
-if (*str == '\0')
-break;
-str++;
+++str;
 }
 }
 return (res);
