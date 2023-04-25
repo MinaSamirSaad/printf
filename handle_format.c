@@ -88,12 +88,18 @@ int handle_format(va_list args, const char *format)
 		{
 			if (!*(++format))
 				break;
-			res += formatCases(format, args)-1;
+			res += formatCases(format, args);
 			res += continue_formatCases(format, args);
-			if ((*format == '+' || ' ') && (*(format + 1) == 'd' || 'i'))
-				format += 1;
-			if ((*format == '#') && (*(format + 1) == 'o' || 'x' || 'X'))
-				format += 1;
+			if ((*format == '+' || *format == ' '))
+			{
+				if ((*(format + 1) == 'd' || *(format + 1) == 'i'))
+					format += 1;
+			}
+			if ((*format == '#'))
+			{
+				if ((*(format + 1) == 'o' || *(format + 1) == 'x' || *(format + 1) == 'X'))
+					format += 1;
+			}
 		}
 		else
 			write(1, format, 1);
