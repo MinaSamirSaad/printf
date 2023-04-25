@@ -51,7 +51,7 @@ int print_custom_str(va_list args)
 	char st[6] = "(null)";
 	int res = 0;
 
-	str = va_arg(args, void *);
+	str = va_arg(args, unsigned char *);
 	if (str == NULL)
 		res += write(1, st, 6);
 	else
