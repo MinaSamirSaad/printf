@@ -40,7 +40,7 @@ int formatCases(const char *format, va_list args)
 			res += print_address(args) - 1;
 			break;
 		case 'S':
-			res += print_custom_str(args) - 1;
+			res += print_custom_str(args);
 			break;
 		default:
 			write(1, format - 1, 2);
