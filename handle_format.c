@@ -12,42 +12,6 @@ int formatCases(const char *format, va_list args)
 
 	switch (*format)
 	{
-<<<<<<< HEAD
-		case 'c':
-			let = va_arg(args, int);
-			write(1, &let, 1);
-			break;
-		case 's':
-		case 'r':
-		case 'R':
-			res += print_str(args, *format) - 1;
-			break;
-		case '%':
-			write(1, format, 1);
-			break;
-		case 'd':
-		case 'i':
-			res += print_integer(args) - 1;
-			break;
-		case 'b':
-			res += print_binary(args) - 1;
-			break;
-		case 'u':
-		case 'o':
-		case 'x':
-		case 'X':
-			res += print_unsigned_integer(args, *format) - 1;
-			break;
-		case 'p':
-			res += print_address(args) - 1;
-			break;
-		case 'S':
-			res += print_custom_str(args) - 1;
-			break;
-		default:
-			write(1, format - 1, 2);
-			format = skp_space_percent(format), res++;
-=======
 	case 'c':
 		let = va_arg(args, int);
 		write(1, &let, 1);
@@ -105,7 +69,6 @@ int continue_formatCases(const char *format, va_list args)
 	default:
 		write(1, format - 1, 2);
 		format = skp_space_percent(format), res++;
->>>>>>> 04a82b1f01698cef7f148b49871bdcfceae686cf
 	}
 	return (res);
 }
