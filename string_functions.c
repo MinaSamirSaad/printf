@@ -18,7 +18,7 @@ const char *skp_space_percent(const char *s)
 */
 int print_str(va_list args, char tag)
 {
-	char *str;
+	char *str, rot13;
 	int i, j;
 
 	str = va_arg(args, char *);
@@ -37,6 +37,19 @@ int print_str(va_list args, char tag)
 
 		for (j = i - 1; j >= 0; j--)
 			write(1, &str[j], 1);
+	}
+	else if (tag == 'R')
+	{
+		for (i = 0; str[i] != '\0'; i++)
+		{
+			if (str[i] >= 'a' && str[i] <= 'z')
+				rot13 = (str[i] + 13) <= 'z' ? (str[i] + 13) : (str[i] + 13) % 123 + 97;
+			else if (str[i] >= 'A' && str[i] <= 'Z')
+				rot13 = (str[i] + 13) <= 'Z' ? (str[i] + 13) : (str[i] + 13) % 91 + 65;
+			else
+				rot13 = str[i];
+			write(1, &rot13, 1);
+		}
 	}
 	return (i);
 }
