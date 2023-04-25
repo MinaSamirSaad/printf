@@ -10,12 +10,12 @@ int print_address(va_list args)
 {
 	unsigned long int address;
 	int printed = 0, i = 0;
-	char ar[32];
+	char ar[36];
 	char convert_to[] = "0123456789abcdef";
 	void *ptr = va_arg(args, void *);
 
 	if (!ptr)
-		printed = write(1, "(nil)", 5);
+		printed += write(1, "(nil)", 5);
 	else
 	{
 		address = (unsigned long int)ptr;
@@ -26,9 +26,7 @@ int print_address(va_list args)
 			i++;
 			printed++;
 		}
-		ar[i++] = 'x';
-		ar[i++] = '0';
-		printed += 2;
+		printed += write(1, "0x", 2);
 		for (--i; i >= 0; i--)
 			write(1, &ar[i], 1);
 	}
