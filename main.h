@@ -13,5 +13,6 @@ int print_unsigned_integer(va_list args, char tag);
 int print_binary(va_list args);
 int print_address(va_list args);
 int print_custom_str(va_list args);
+int custom_str_helper(unsigned char *str);
 
 #endif
