@@ -40,3 +40,29 @@ int print_str(va_list args, char tag)
 	}
 	return (i);
 }
+/**
+* print_custom_str - function prints custom conversion specifier string
+* @args: list that contains the string
+* Return: number of printed bytes of string
+*/
+int print_custom_str(va_list args)
+{
+char *str;
+int res = 0;
+str = va_arg(args, char *);
+while (*str != '\0')
+{
+if (*str < ' ' || *str >= 127)
+{
+	res += write(1, "\\x", 2);
+	res += write(1, "0123456789ABCDEF" + ((*str >> 4) & 0xF), 1);
+	res += write(1, "0123456789ABCDEF" + (*str & 0xF), 1);
+}
+else
+{
+	res += write(1, str, 1);
+}
+	str++;
+}
+return (res);
+}
