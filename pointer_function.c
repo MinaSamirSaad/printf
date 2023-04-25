@@ -8,16 +8,16 @@
 */
 int print_address(va_list args)
 {
-	unsigned long address;
+	unsigned long int address;
 	int printed = 0, rem, i = 0;
 	char ar[32] = "(nil)";
 	void *ptr = va_arg(args, void *);
 
 	if (!ptr)
-		printed = write(1, ar, 5);
+		printed = write(1, "(nil)", 5);
 	else
 	{
-		address = (unsigned long) ptr;
+		address = (unsigned long int)ptr;
 		while (address != 0)
 		{
 			rem = address % 16;
