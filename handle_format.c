@@ -14,7 +14,7 @@ int formatCases(const char *format, va_list args)
 	{
 	case 'c':
 		let = va_arg(args, int);
-		write(1, &let, 1);
+		res+=write(1, &let, 1);
 		break;
 	case 's':
 	case 'r':
@@ -22,7 +22,7 @@ int formatCases(const char *format, va_list args)
 		res += print_str(args, *format) - 1;
 		break;
 	case '%':
-		write(1, format, 1);
+		res+=write(1, format, 1);
 		break;
 	case 'd':
 	case 'i':
