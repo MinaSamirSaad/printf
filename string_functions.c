@@ -47,7 +47,7 @@ int print_str(va_list args, char tag)
 */
 int print_custom_str(va_list args)
 {
-unsigned char *str;
+char *str;
 int res = 0;
 str = va_arg(args, char *);
 	if (str == NULL)
