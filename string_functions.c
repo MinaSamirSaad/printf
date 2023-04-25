@@ -47,29 +47,29 @@ int print_str(va_list args, char tag)
  */
 int print_custom_str(va_list args)
 {
-unsigned char *str;
-char st[6] = "(null)";
-int res = 0;
+	unsigned char *str;
+	char st[6] = "(null)";
+	int res = 0;
 
-str = va_arg(args, unsigned char *);
-if (str == NULL)
-res += write(1, st, 6);
-else
-{
-while (*str!='\0')
-{
-if (*str < ' ' || *str >= 127)
-{
-res += write(1, "\\x", 2);
-res += write(1, "0123456789ABCDEF" + ((*str >> 4) & 0xF), 1);
-res += write(1, "0123456789ABCDEF" + (*str & 0xF), 1);
-}
-else
-{
-res += write(1, str, 1);
-}
-++str;
-}
-}
-return (res);
+	str = va_arg(args, unsigned char *);
+	if (str == NULL)
+		res += write(1, st, 6);
+	else
+	{
+		while (*str != '\0')
+		{
+			if (*str < ' ' || *str >= 127)
+			{
+				res += write(1, "\\x", 2);
+				res += write(1, "0123456789ABCDEF" + ((*str >> 4) & 0xF), 1);
+				res += write(1, "0123456789ABCDEF" + (*str & 0xF), 1);
+			}
+			else
+			{
+				res += write(1, str, 1);
+			}
+			++str;
+		}
+	}
+	return (res);
 }
