@@ -10,7 +10,7 @@ int print_address(va_list args)
 {
 	unsigned long int address;
 	int printed = 0, rem, i = 0;
-	char ar[32] = "(nil)";
+	char ar[32];
 	void *ptr = va_arg(args, void *);
 
 	if (!ptr)
