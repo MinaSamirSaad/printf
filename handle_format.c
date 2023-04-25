@@ -14,7 +14,7 @@ int formatCases(const char *format, va_list args)
 	{
 	case 'c':
 		let = va_arg(args, int);
-		res+=write(1, &let, 1);
+		res += write(1, &let, 1);
 		break;
 	case 's':
 	case 'r':
@@ -90,16 +90,6 @@ int handle_format(va_list args, const char *format)
 				break;
 			res += formatCases(format, args);
 			res += continue_formatCases(format, args);
-			if ((*format == '+' || *format == ' '))
-			{
-				if ((*(format + 1) == 'd' || *(format + 1) == 'i'))
-					format += 1;
-			}
-			if ((*format == '#'))
-			{
-				if ((*(format + 1) == 'o' || *(format + 1) == 'x' || *(format + 1) == 'X'))
-					format += 1;
-			}
 		}
 		else
 			write(1, format, 1);
