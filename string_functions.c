@@ -12,21 +12,31 @@ const char *skp_space_percent(const char *s)
 }
 /**
 * print_str - function prints string
-*@args: list that contains the string
-*Return: number of printed bytes of string
+* @args: list that contains the string
+* @tag: s = normal string print - r = reverse string print
+* Return: number of printed bytes of string
 */
-int print_str(va_list args)
+int print_str(va_list args, char tag)
 {
 	char *str;
-	int i;
+	int i, j;
 
 	str = va_arg(args, char *);
-
 	if (str == NULL)
 		str = "(null)";
 
-	for (i = 0; str[i] != '\0'; i++)
-		write(1, &str[i], 1);
+	if (tag == 's')
+	{
+		for (i = 0; str[i] != '\0'; i++)
+			write(1, &str[i], 1);
+	}
+	else if (tag == 'r')
+	{
+		for (i = 0; str[i] != '\0'; i++)
+			;
 
+		for (j = i - 1; j >= 0; j--)
+			write(1, &str[j], 1);
+	}
 	return (i);
 }
