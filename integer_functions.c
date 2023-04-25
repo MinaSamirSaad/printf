@@ -21,6 +21,7 @@ int print_num(unsigned int n, int c)
 /**
  * print_integer - function that print an integer
  *@args: list that contains the format inserted
+ *@flag: '+' or ' '
  *Return: counter of the integers printed
  */
 int print_integer(va_list args, char flag)
@@ -94,7 +95,12 @@ int print_unsigned_integer(va_list args, char tag)
 	}
 	return (count);
 }
-
+/**
+ *  handle_unsigned_integer - function that print unsigned integer
+ *@args: list that contains the format inserted
+ * @tag: o=ocatal x,X=hexadecimal
+ *Return: bytes of unsigned int printed
+ */
 int handle_unsigned_integer(va_list args, char tag)
 {
 	int res = 0;
