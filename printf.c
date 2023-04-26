@@ -18,5 +18,5 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 
-	return (printed > 0 ? printed : -1);
+	return (printed);
 }

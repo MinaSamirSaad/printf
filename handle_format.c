@@ -58,7 +58,7 @@ int handle_format(va_list args, const char *format)
 		if (*format == '%')
 		{
 			if (!*(++format))
-				break;
+				return (-1);
 			else if (*format == '+' || *format == ' ')
 			{
 				if (*(format + 1) == 'd' || *(format + 1) == 'i')
